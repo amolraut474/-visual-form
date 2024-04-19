@@ -67,6 +67,7 @@
             flex-grow: 1;
             padding: 40px;
             box-sizing: border-box;
+            background: #f2f4f8;
         }
 
         #formBuilder {
@@ -81,7 +82,7 @@
             padding: 10px;
 
             cursor: move;
-            /* Indicates that you can drag the field */
+         
         }
 
         input,
@@ -90,7 +91,7 @@
             width: calc(100% - 100px);
             padding: 5px;
             margin-top: 5px;
-            padding: 15px 5px;
+            padding: 12px 5px;
             border: 1px solid #ddd;
             border-radius: 4px;
             color: #6b6868;
@@ -102,6 +103,8 @@
 
         .container {
             display: flex;
+            background: #212121;
+
         }
 
         button#saveForm {
@@ -136,6 +139,72 @@
             font-weight: 700;
             color: #212121;
         }
+
+        input[type="text"] {
+            margin-top: 40px;
+        }
+
+        textarea {
+            padding: 60px 5px;
+        }
+
+        button.delete-btn {
+            padding: 11px;
+        }
+
+        .Add-btn {
+            padding: 11px;
+        }
+
+        div#\36 80cff8d-c7f9-40be-8767-e3d6ba420952 {
+            position: relative;
+        }
+
+        div#\36 80cff8d-c7f9-40be-8767-e3d6ba420952 .delete-btn {
+            position: absolute;
+            top: 34px;
+            right: 50px;
+        }
+
+        @media only screen and (max-width: 600px) {
+
+         
+            #sidebar {
+                width: 100%;
+                padding: 10px;
+            }
+
+            #content {
+                padding: 0px;
+            }
+
+            #formBuilder {
+                padding: 40px 20px;
+            }
+
+            .field {
+                padding: 10px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: calc(100%);
+            }
+
+            button#saveForm {
+                padding: 10px 30px;
+            }
+
+            button.delete-btn {
+                margin-top: 13px;
+            }
+
+            div#\36 80cff8d-c7f9-40be-8767-e3d6ba420952 .delete-btn {
+                top: 184px;
+                right: 105px;
+            }
+        }
     </style>
 </head>
 
@@ -160,7 +229,7 @@
     </div>
     <script>
         let formData = [
-            // Initial sample data provided by you in JSON
+         
             { id: "c0ac49c5-871e-4c72-a878-251de465e6b4", type: "input", label: "Sample Label", placeholder: "Sample placeholder" },
             { id: "146e69c2-1630-4a27-9d0b-f09e463a66e4", type: "select", label: "Sample Label", options: ["Sample Option", "Sample Option", "Sample Option"] },
             { id: "45002ecf-85cf-4852-bc46-529f94a758f5", type: "input", label: "Sample Label", placeholder: "Sample Placeholder" },
@@ -179,7 +248,7 @@
                 fieldDiv.innerHTML = `
                     <label>${element.label}</label>
                     ${renderInput(element)}
-                    <button onclick="deleteElement('${element.id}')"><i class="fas fa-trash-alt"></i></button>
+                    <button onclick="deleteElement('${element.id}')" class="delete-btn"><i class="fas fa-trash-alt"></i></button>
                     ${element.type === 'select' ? renderSelectOptions(element) : ''}
                 `;
                 formBuilder.appendChild(fieldDiv);
@@ -195,7 +264,7 @@
                     <select onchange="updateLabel(this.value, '${element.id}')">
                         ${optionsHTML}
                     </select>
-                    <button onclick="addOption('${element.id}')"><i class="fas fa-plus"></i></button>`;
+                    <button onclick="addOption('${element.id}')" class="Add-btn"><i class="fas fa-plus"></i></button>`;
             } else {
                 return `<input type="${element.type}" placeholder="${element.placeholder}" value="${element.label}" onchange="updateLabel(this.value, '${element.id}')">`;
             }
@@ -206,7 +275,7 @@
                 return `
                     <div>
                         <input type="text" value="${option}" onchange="updateOption(this.value, '${element.id}', ${index})">
-                        <button onclick="deleteOption('${element.id}', ${index})"><i class="fas fa-trash-alt"></i></button>
+                        <button onclick="deleteOption('${element.id}', ${index})" class="delete-btn"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 `;
             }).join('');
@@ -298,4 +367,3 @@
 </body>
 
 </html>
-
